@@ -1,6 +1,5 @@
+import queryParamParser from '../helpers/query-param-parser';
 import { QueryParam } from './query-param';
-import queryParamParser from './query-param-parser';
-
 
 const mockQueryParamLabel = 'expectedDecodedKey';
 const mockQueryParamKey = 'encoded-key-from-server';

@@ -1,6 +1,6 @@
 import { QueryParam } from './query-param';
 import { QueryParamCollection, QueryParamMap } from './query-param-collection';
-import queryParamParser from './query-param-parser';
+import queryParamParser from '../helpers/query-param-parser';
 
 const mockQueryParam1 = new QueryParam<string>('serialized-label-1', queryParamParser.toModelString, queryParamParser.serializeString);
 const mockQueryParam2 = new QueryParam<string>('serialized-label-2', queryParamParser.toModelString, queryParamParser.serializeString);
