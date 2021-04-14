@@ -31,7 +31,7 @@ export class QueryParam<V> {
     const { value, serializedValue } = options;
 
     if (value && serializedValue) {
-      console.warn(`a value and serializedValue were passed into query param ${this.serializedKey}.
+      console.error(`a value and serializedValue were passed into query param ${this.serializedKey}.
       This could cause unexpected behavior. Use either serializedValue OR value, but not both`);
     }
     if (value) {

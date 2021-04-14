@@ -43,10 +43,8 @@ export class QueryParamCollection {
 
     if (filteredLabels.length !== 0) {
       return filteredLabels[0];
-    } else {
-      console.warn(`could not find queryParam with key ${key}`);
     }
-
+    
     return;
   };
 
