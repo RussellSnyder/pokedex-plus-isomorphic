@@ -22,7 +22,7 @@ const queryParamParser = {
 
     return bool;
   },
-  serializeBoolean: (v: boolean): string => v ? '1' : '0',
+  serializeBoolean: (v: boolean): string => (v ? '1' : '0'),
 };
 
 export default queryParamParser;

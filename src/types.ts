@@ -104,8 +104,8 @@ export interface PokemonResponseStat {
   base_stat: number;
   effort: number;
   stat: {
-    name: keyof PokemonStats,
-    url: string
+    name: keyof PokemonStats;
+    url: string;
   };
 }
 
@@ -301,8 +301,6 @@ export interface DecodedPokemonListUrl {
   filter?: FilterParam;
   sort?: keyof typeof SortParam;
 }
-
-
 
 export const SortQueryKeyLookup = {
   nameAsc: 's-name-asc',

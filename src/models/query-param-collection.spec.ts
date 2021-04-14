@@ -2,9 +2,21 @@ import { QueryParam } from './query-param';
 import { QueryParamCollection, QueryParamMap } from './query-param-collection';
 import queryParamParser from '../helpers/query-param-parser';
 
-const mockQueryParam1 = new QueryParam<string>('serialized-label-1', queryParamParser.toModelString, queryParamParser.serializeString);
-const mockQueryParam2 = new QueryParam<string>('serialized-label-2', queryParamParser.toModelString, queryParamParser.serializeString);
-const mockQueryParam3Number = new QueryParam<number>('serialized-label2', queryParamParser.toModelNumber, queryParamParser.serializeNumber);
+const mockQueryParam1 = new QueryParam<string>(
+  'serialized-label-1',
+  queryParamParser.toModelString,
+  queryParamParser.serializeString,
+);
+const mockQueryParam2 = new QueryParam<string>(
+  'serialized-label-2',
+  queryParamParser.toModelString,
+  queryParamParser.serializeString,
+);
+const mockQueryParam3Number = new QueryParam<number>(
+  'serialized-label2',
+  queryParamParser.toModelNumber,
+  queryParamParser.serializeNumber,
+);
 
 describe('QueryParamCollection Class', () => {
   let mockQueryParamMap: QueryParamMap;
@@ -102,4 +114,3 @@ describe('QueryParamCollection Class', () => {
 //     expect(console.error).toHaveBeenCalledTimes(3);
 //   });
 // });
-

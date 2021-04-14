@@ -23,24 +23,38 @@ const mockSerializedBooleanValueStringFalse = 'false';
 
 describe('QueryParam Class', () => {
   test('should set model value when a serialized value is set in constructor', () => {
-    const mockParam = new QueryParam<string>(mockQueryParamKey, queryParamParser.toModelString, queryParamParser.serializeString, {
-      serializedValue: mockStringValue
-     });
+    const mockParam = new QueryParam<string>(
+      mockQueryParamKey,
+      queryParamParser.toModelString,
+      queryParamParser.serializeString,
+      {
+        serializedValue: mockStringValue,
+      },
+    );
 
     expect(mockParam.value).toBe(mockSerializedStringValue);
   });
 
   test('should set serializeValue when a value is set in constructor', () => {
-    const mockParam = new QueryParam<string>(mockQueryParamKey, queryParamParser.toModelString, queryParamParser.serializeString, {
-      value: mockSerializedStringValue
-     });
+    const mockParam = new QueryParam<string>(
+      mockQueryParamKey,
+      queryParamParser.toModelString,
+      queryParamParser.serializeString,
+      {
+        value: mockSerializedStringValue,
+      },
+    );
 
     expect(mockParam.serializedValue).toBe(mockStringValue);
   });
 
   test('should set serialized and model value when a serialized value is set after creation', () => {
-    const mockParam = new QueryParam<string>(mockQueryParamKey, queryParamParser.toModelString, queryParamParser.serializeString);
-    
+    const mockParam = new QueryParam<string>(
+      mockQueryParamKey,
+      queryParamParser.toModelString,
+      queryParamParser.serializeString,
+    );
+
     mockParam.setSerializedValue(mockSerializedStringValue);
 
     expect(mockParam.serializedValue).toBe(mockSerializedStringValue);
@@ -48,9 +62,13 @@ describe('QueryParam Class', () => {
   });
 
   test('should set serializedValue and value when a value is set after creation', () => {
-    const mockParam = new QueryParam<string>(mockQueryParamKey, queryParamParser.toModelString, queryParamParser.serializeString);
+    const mockParam = new QueryParam<string>(
+      mockQueryParamKey,
+      queryParamParser.toModelString,
+      queryParamParser.serializeString,
+    );
 
-     mockParam.setValue(mockSerializedStringValue);
+    mockParam.setValue(mockSerializedStringValue);
 
     expect(mockParam.serializedValue).toBe(mockSerializedStringValue);
     expect(mockParam.value).toBe(mockStringValue);
@@ -60,7 +78,7 @@ describe('QueryParam Class', () => {
     const serializedValue = 'what is up?';
 
     const mockParam = new QueryParam<string>('sort', queryParamParser.toModelString, queryParamParser.serializeString, {
-      serializedValue
+      serializedValue,
     });
 
     expect(mockParam.getSerializedQuery()).toEqual({ sort: serializedValue });
@@ -70,7 +88,7 @@ describe('QueryParam Class', () => {
     const value = 'what is up?';
 
     const mockParam = new QueryParam<string>('sort', queryParamParser.toModelString, queryParamParser.serializeString, {
-      serializedValue: value
+      serializedValue: value,
     });
 
     expect(mockParam.getSerializedQuery()).toEqual({ sort: value });
@@ -81,7 +99,6 @@ describe('QueryParam Class', () => {
 
     const result = mockParam.getSerializedQuery();
 
-    expect(result).toEqual({ 'sort': ''});
+    expect(result).toEqual({ sort: '' });
   });
 });
-

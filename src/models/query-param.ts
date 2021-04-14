@@ -1,8 +1,8 @@
 export type SerializedQueryParam = { [key: string]: string };
 
 type QueryParamConstructorOptions<V> = {
-  serializedValue?: string,
-  value?: V
+  serializedValue?: string;
+  value?: V;
 };
 
 export class QueryParam<V> {
@@ -18,7 +18,7 @@ export class QueryParam<V> {
     serializedKey: string,
     toModelFunction: (s: string) => V,
     serializeValueFunction: (v: V) => string,
-    options?: QueryParamConstructorOptions<V>
+    options?: QueryParamConstructorOptions<V>,
   ) {
     this.serializedKey = serializedKey;
     this.toModelFunction = toModelFunction;
@@ -55,7 +55,7 @@ export class QueryParam<V> {
 
   getSerializedQuery = (): SerializedQueryParam => {
     return {
-      [this.serializedKey]: this.serializedValue
+      [this.serializedKey]: this.serializedValue,
     };
-  }
+  };
 }

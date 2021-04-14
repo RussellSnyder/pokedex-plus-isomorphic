@@ -8,10 +8,7 @@ export class QueryParamCollection {
 
   private queryParams: QueryParamMap;
 
-
-  constructor(
-    queryParams: QueryParamMap,
-  ) {
+  constructor(queryParams: QueryParamMap) {
     this.queryParams = queryParams;
     this.activeQueryParams = this.getActiveQueryParams();
   }
@@ -21,29 +18,28 @@ export class QueryParamCollection {
       return this.queryParams;
     }
 
-    Object.entries(serializedQueryParam)
-      .forEach(([key, value]) => {
-        const queryParam = this.getQueryParamsFromSerializedKey(key);
-        const label = this.getLabelFromSerializedKey(key);
+    Object.entries(serializedQueryParam).forEach(([key, value]) => {
+      const queryParam = this.getQueryParamsFromSerializedKey(key);
+      const label = this.getLabelFromSerializedKey(key);
 
-        if (queryParam && label) {
-          queryParam.setSerializedValue(value);
-          this.queryParams.set(label, queryParam);
-        }
-      });
+      if (queryParam && label) {
+        queryParam.setSerializedValue(value);
+        this.queryParams.set(label, queryParam);
+      }
+    });
 
     this.updateActiveQueryParams();
     return this.queryParams;
-  }
+  };
 
   getQueryParamByLabel = (key: string): QueryParam<any> | undefined => {
     return this.queryParams.get(key);
-  }
+  };
 
   getLabelFromSerializedKey = (key: string): string | undefined => {
     const filteredLabels = [...this.queryParams.entries()]
-    .filter(([, queryParam]) => queryParam.serializedKey === key)
-    .map(([k]) => k);
+      .filter(([, queryParam]) => queryParam.serializedKey === key)
+      .map(([k]) => k);
 
     if (filteredLabels.length !== 0) {
       return filteredLabels[0];
@@ -52,7 +48,7 @@ export class QueryParamCollection {
     }
 
     return;
-  }
+  };
 
   getQueryValueByLabel = (key: string): any | undefined => {
     const queryParam = this.queryParams.get(key);
@@ -61,50 +57,60 @@ export class QueryParamCollection {
     }
 
     return queryParam.value;
-  }
+  };
 
   getQueryParamsFromSerializedKey = (key: string): QueryParam<any> | undefined => {
-    return [...this.queryParams.values()].find(q => {
+    return [...this.queryParams.values()].find((q) => {
       return q.serializedKey === key;
     });
-  }
+  };
 
   getSerializedQueryParams = (): { [key: string]: string } => {
-    return [...this.queryParams.values()]
-      .reduce((encoded, query) => ({
+    return [...this.queryParams.values()].reduce(
+      (encoded, query) => ({
         ...encoded,
         ...query.getSerializedQuery(),
-      }), {});
-  }
+      }),
+      {},
+    );
+  };
 
   getSerializedQueryParamsWithValues = (): { [key: string]: string } => {
     return [...this.queryParams.values()]
       .filter((v) => v.serializedValue !== '')
-      .reduce((encoded, query) => ({
-        ...encoded,
-        ...query.getSerializedQuery(),
-      }), {});
-  }
+      .reduce(
+        (encoded, query) => ({
+          ...encoded,
+          ...query.getSerializedQuery(),
+        }),
+        {},
+      );
+  };
 
   getActiveQueryParams = (): { [key: string]: any } => {
     return [...this.queryParams.entries()]
       .filter(([, queryParam]) => queryParam.serializedValue && queryParam.serializedValue !== '')
-      .reduce((prev, [label, queryParam]) => ({
-        ...prev,
-        [label]: queryParam.value
-      }), {});
-  }
+      .reduce(
+        (prev, [label, queryParam]) => ({
+          ...prev,
+          [label]: queryParam.value,
+        }),
+        {},
+      );
+  };
 
   getLabelValueObject = (): {} => {
     if (!this.queryParams) {
       return {};
     }
-    return [...this.queryParams]
-      .reduce((prev, [label, queryParam]) => ({
+    return [...this.queryParams].reduce(
+      (prev, [label, queryParam]) => ({
         ...prev,
-        [label]: queryParam.value
-      }), {});
-  }
+        [label]: queryParam.value,
+      }),
+      {},
+    );
+  };
 
   updateQueryParam = (label: string, value: any): void => {
     const queryParam = this.getQueryParamByLabel(label);
@@ -117,7 +123,7 @@ export class QueryParamCollection {
 
     this.queryParams.set(label, queryParam);
     this.updateActiveQueryParams();
-  }
+  };
 
   private updateActiveQueryParams(): void {
     this.activeQueryParams = this.getActiveQueryParams();
