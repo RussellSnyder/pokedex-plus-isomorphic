@@ -1,6 +1,6 @@
 import queryParamParser from '../helpers/query-param-parser';
 import { QueryParam } from '../models/query-param';
-import { QueryParamMap, QueryParamCollection } from '../models/query-param-collection';
+import { QueryParamCollection, QueryParams } from '../models/query-param-collection';
 
 export enum SortQueryParam {
   Name = 'name',
@@ -8,42 +8,27 @@ export enum SortQueryParam {
   Weight = 'weight',
 }
 
-const sortQueryParamsMap: QueryParamMap = new Map<string, QueryParam<any>>([
-  [
-    SortQueryParam.Name,
-    new QueryParam<string>('name', queryParamParser.toModelString, queryParamParser.serializeString),
-  ],
-  [
-    SortQueryParam.Height,
-    new QueryParam<number>('height', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
-  ],
-  [
-    SortQueryParam.Weight,
-    new QueryParam<number>('weight', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
-  ],
-]);
+const sortQueryParams = {
+  [SortQueryParam.Name]:  new QueryParam<string>('name', queryParamParser.toModelString, queryParamParser.serializeString),
+  [SortQueryParam.Height]: new QueryParam<number>('height', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+  [SortQueryParam.Weight]: new QueryParam<number>('weight', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+};
 
-export const sortQueryParamCollection = new QueryParamCollection(sortQueryParamsMap);
+export const sortQueryParamCollection = new QueryParamCollection<SortQueryParam>(sortQueryParams);
 
 export enum IntervalQueryParam {
   Offset = 'offset',
   Limit = 'limit',
 }
 
-const intervalQueryParamsMap: QueryParamMap = new Map<string, QueryParam<any>>([
-  [
-    IntervalQueryParam.Offset,
-    new QueryParam<number>('offset', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
-  ],
-  [
-    IntervalQueryParam.Limit,
-    new QueryParam<number>('limit', queryParamParser.toModelNumber, queryParamParser.serializeNumber, {
-      value: 10,
-    }),
-  ],
-]);
+const intervalQueryParamsMap = {
+  [IntervalQueryParam.Offset]: new QueryParam<number>('offset', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+  [IntervalQueryParam.Limit]: new QueryParam<number>('limit', queryParamParser.toModelNumber, queryParamParser.serializeNumber, {
+    value: 10
+  }),
+};
 
-export const intervalQueryParamCollection = new QueryParamCollection(intervalQueryParamsMap);
+export const intervalQueryParamCollection = new QueryParamCollection<IntervalQueryParam>(intervalQueryParamsMap);
 
 export enum FilterQueryParam {
   Type = 'type',
@@ -52,23 +37,11 @@ export enum FilterQueryParam {
   HeightMax = 'heightMax',
 }
 
-const filterQueryParamsMap: QueryParamMap = new Map<string, QueryParam<any>>([
-  [
-    FilterQueryParam.Type,
-    new QueryParam<string[]>('type', queryParamParser.toModelStringList, queryParamParser.serializeStringList),
-  ],
-  [
-    FilterQueryParam.Generation,
-    new QueryParam<number[]>('generation', queryParamParser.toModelNumberList, queryParamParser.serializeNumberList),
-  ],
-  [
-    FilterQueryParam.HeightMin,
-    new QueryParam<number>('height-min', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
-  ],
-  [
-    FilterQueryParam.HeightMax,
-    new QueryParam<number>('height-max', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
-  ],
-]);
+const filterQueryParamsMap = {
+  [FilterQueryParam.Type]: new QueryParam<string[]>('type', queryParamParser.toModelStringList, queryParamParser.serializeStringList),
+  [FilterQueryParam.Generation]: new QueryParam<number[]>('generation', queryParamParser.toModelNumberList, queryParamParser.serializeNumberList),
+  [FilterQueryParam.HeightMin]: new QueryParam<number>('height-min', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+  [FilterQueryParam.HeightMax]: new QueryParam<number>('height-max', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+}
 
 export const filterQueryParamCollection = new QueryParamCollection(filterQueryParamsMap);
