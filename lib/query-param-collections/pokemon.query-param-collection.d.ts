@@ -18,3 +18,14 @@ export declare enum FilterQueryParam {
 }
 export declare const filterQueryParamCollection: QueryParamCollection<FilterQueryParam>;
 export declare type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | FilterQueryParam;
+export interface PokemonQueryParamsKeyValueMap {
+    [SortQueryParam.Name]?: string;
+    [SortQueryParam.Height]?: number;
+    [SortQueryParam.Weight]?: number;
+    [IntervalQueryParam.Offset]?: number;
+    [IntervalQueryParam.Limit]?: number;
+    [FilterQueryParam.Type]?: string;
+    [FilterQueryParam.Generation]?: number;
+    [FilterQueryParam.HeightMin]?: number;
+    [FilterQueryParam.HeightMax]?: number;
+}

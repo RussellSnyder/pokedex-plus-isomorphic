@@ -47,3 +47,18 @@ const filterQueryParamsMap = {
 export const filterQueryParamCollection = new QueryParamCollection(filterQueryParamsMap);
 
 export type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | FilterQueryParam;
+
+// TODO figure out if we can extract this using the type given into the QueryParam class
+export interface PokemonQueryParamsKeyValueMap {
+  [SortQueryParam.Name]?:  string,
+  [SortQueryParam.Height]?: number,
+  [SortQueryParam.Weight]?: number,
+
+  [IntervalQueryParam.Offset]?: number,
+  [IntervalQueryParam.Limit]?: number,
+
+  [FilterQueryParam.Type]?: string,
+  [FilterQueryParam.Generation]?: number,
+  [FilterQueryParam.HeightMin]?: number,
+  [FilterQueryParam.HeightMax]?: number,
+}
