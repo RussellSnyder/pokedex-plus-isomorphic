@@ -45,3 +45,5 @@ const filterQueryParamsMap = {
 }
 
 export const filterQueryParamCollection = new QueryParamCollection(filterQueryParamsMap);
+
+export type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | FilterQueryParam;
