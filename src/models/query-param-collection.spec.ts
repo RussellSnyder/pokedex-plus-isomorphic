@@ -1,6 +1,6 @@
-import { QueryParam } from './query-param';
-import { QueryParamCollection, QueryParams } from './query-param-collection';
 import queryParamParser from '../helpers/query-param-parser';
+import { QueryParam } from './query-param';
+import { QueryParamCollection, TypedQueryParamLookup } from './query-param-collection';
 
 const mockQueryParam1 = new QueryParam<string>(
   'serialized-label-1',
@@ -24,9 +24,15 @@ enum MockLabel {
   LabelThree = 'labelThree',
 }
 
+interface MockLabelTypeLookup {
+  [MockLabel.LabelOne]: string;
+  [MockLabel.LabelTwo]: string;
+  [MockLabel.LabelThree]: number;
+}
+
 describe('QueryParamCollection Class', () => {
-  let mockQueryParams: QueryParams<MockLabel>;
-  let mockQueryParamCollection: QueryParamCollection<MockLabel>;
+  let mockQueryParams: TypedQueryParamLookup<MockLabelTypeLookup>;
+  let mockQueryParamCollection: QueryParamCollection<MockLabelTypeLookup>;
 
   beforeEach(() => {
     mockQueryParams = {
@@ -35,7 +41,7 @@ describe('QueryParamCollection Class', () => {
       [MockLabel.LabelThree]: mockQueryParam3Number,
     }
 
-    mockQueryParamCollection = new QueryParamCollection<MockLabel>(mockQueryParams);
+    mockQueryParamCollection = new QueryParamCollection<MockLabelTypeLookup>(mockQueryParams);
 
   });
 
@@ -61,6 +67,7 @@ describe('QueryParamCollection Class', () => {
       expect(result).toBeInstanceOf(QueryParam);
     });
   })
+
   describe('getLabelFromSerializedKey', () => {
     test('should return queryParam with the corresponding serialized label', () => {
       const result = mockQueryParamCollection.getLabelFromSerializedKey(mockQueryParam1.serializedKey);
@@ -74,6 +81,34 @@ describe('QueryParamCollection Class', () => {
 
       expect(result).toBeUndefined();
       
+    });
+  });
+
+  describe('updateQueryParam', () => {
+    test('should return queryParam with the corresponding serialized label', () => {
+      const expectedUpdatedValue = 'Updated Value For updateQueryParam';
+
+      mockQueryParamCollection.updateQueryParam(MockLabel.LabelOne, expectedUpdatedValue);
+
+      const result = mockQueryParamCollection.getLabelValueObject();
+
+      expect(result[MockLabel.LabelOne]).toBe(expectedUpdatedValue);
+
+    });
+  });
+
+  describe('updateQueryParams', () => {
+    test('should return queryParam with the corresponding serialized label', () => {
+      const expectedUpdatedValue = 'Updated Value';
+
+      mockQueryParamCollection.updateQueryParams({
+        [MockLabel.LabelOne]: expectedUpdatedValue
+      });
+
+      const result = mockQueryParamCollection.getLabelValueObject();
+
+      expect(result[MockLabel.LabelOne]).toBe(expectedUpdatedValue);
+
     });
   });
 });
