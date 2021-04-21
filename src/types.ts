@@ -1,4 +1,8 @@
-// TODO make into npm package for @types of pokeapi wrapper
+export enum SortValue {
+  Asc,
+  Desc
+}
+
 export interface GroupNamedAPIResourceResponse {
   data: {
     count: number;

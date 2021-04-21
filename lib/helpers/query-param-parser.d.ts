@@ -1,6 +1,9 @@
+import { SortValue } from "../types";
 declare const queryParamParser: {
     toModelString: (v: string) => string;
     serializeString: (v: string) => string;
+    toModelSortValue: (v: string) => SortValue;
+    serializeSortValue: (v: SortValue) => string;
     toModelNumber: (v: string) => number;
     serializeNumber: (v: number) => string;
     toModelStringList: (v: string) => string[];

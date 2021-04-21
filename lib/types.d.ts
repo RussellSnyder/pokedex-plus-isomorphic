@@ -1,3 +1,7 @@
+export declare enum SortValue {
+    Asc = 0,
+    Desc = 1
+}
 export interface GroupNamedAPIResourceResponse {
     data: {
         count: number;

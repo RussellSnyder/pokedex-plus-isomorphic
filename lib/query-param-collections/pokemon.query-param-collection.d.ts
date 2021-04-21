@@ -1,14 +1,15 @@
 import { QueryParam } from '../models/query-param';
 import { IncompleteMap, QueryParamCollection } from '../models/query-param-collection';
+import { SortValue } from '../types';
 export declare enum SortQueryParam {
     Name = "name",
     Height = "height",
     Weight = "weight"
 }
 export interface SortQueryLabelTypeLookup {
-    [SortQueryParam.Name]: string;
-    [SortQueryParam.Height]: number;
-    [SortQueryParam.Weight]: number;
+    [SortQueryParam.Name]: SortValue;
+    [SortQueryParam.Height]: SortValue;
+    [SortQueryParam.Weight]: SortValue;
 }
 export declare const sortQueryParamCollection: QueryParamCollection<SortQueryLabelTypeLookup>;
 export declare enum IntervalQueryParam {

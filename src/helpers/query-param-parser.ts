@@ -1,6 +1,11 @@
+import { SortValue } from "../types";
+
 const queryParamParser = {
   toModelString: (v: string): string => v,
   serializeString: (v: string): string => v,
+
+  toModelSortValue: (v: string): SortValue => v === 'asc' ? SortValue.Asc : SortValue.Desc,
+  serializeSortValue: (v: SortValue): string => v === SortValue.Asc ? 'asc' : 'desc',
 
   toModelNumber: (v: string): number => parseInt(v, 10),
   serializeNumber: (v: number): string => v.toString(),

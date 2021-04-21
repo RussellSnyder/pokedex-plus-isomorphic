@@ -1,6 +1,7 @@
 import queryParamParser from '../helpers/query-param-parser';
 import { QueryParam } from '../models/query-param';
 import { IncompleteMap, QueryParamCollection } from '../models/query-param-collection';
+import { SortValue } from '../types';
 
 export enum SortQueryParam {
   Name = 'name',
@@ -9,18 +10,18 @@ export enum SortQueryParam {
 }
 
 export interface SortQueryLabelTypeLookup {
-  [SortQueryParam.Name]: string,
-  [SortQueryParam.Height]: number,
-  [SortQueryParam.Weight]: number,
+  [SortQueryParam.Name]: SortValue,
+  [SortQueryParam.Height]: SortValue,
+  [SortQueryParam.Weight]: SortValue,
 }
 
 const sortQueryParams = {
   [SortQueryParam.Name]: new QueryParam<SortQueryLabelTypeLookup[SortQueryParam.Name]>('name',
-    queryParamParser.toModelString, queryParamParser.serializeString),
+    queryParamParser.toModelSortValue, queryParamParser.serializeSortValue),
   [SortQueryParam.Height]: new QueryParam<SortQueryLabelTypeLookup[SortQueryParam.Height]>('height',
-    queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+    queryParamParser.toModelSortValue, queryParamParser.serializeSortValue),
   [SortQueryParam.Weight]: new QueryParam<SortQueryLabelTypeLookup[SortQueryParam.Weight]>('weight',
-    queryParamParser.toModelNumber, queryParamParser.serializeNumber),
+    queryParamParser.toModelSortValue, queryParamParser.serializeSortValue),
 };
 
 export const sortQueryParamCollection = new QueryParamCollection<SortQueryLabelTypeLookup>(sortQueryParams);
