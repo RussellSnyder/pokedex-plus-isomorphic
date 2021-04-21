@@ -1,8 +1,12 @@
 {
   "name": "pokedex-plus-isomorphic",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.1.1",
+  "description": "Shared FE and BE code for Pokemon Plus",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RussellSnyder/pokedex-plus-isomorphic.git"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watchAll",
@@ -10,7 +14,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -p tsconfig.json"
   },
-  "author": "",
+  "author": "Russell Snyder",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^26.0.22",
