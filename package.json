@@ -1,6 +1,6 @@
 {
   "name": "pokedex-plus-isomorphic",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "description": "Shared FE and BE code for Pokemon Plus",
   "main": "index.js",
   "repository": {

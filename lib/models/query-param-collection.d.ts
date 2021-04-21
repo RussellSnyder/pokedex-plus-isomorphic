@@ -1,3 +1,4 @@
+import { ValueOf } from '../util';
 import { QueryParam, SerializedQueryParam } from './query-param';
 export declare type QueryParamCollectionType<KV extends string | number | symbol> = {
     [K in keyof KV]: QueryParam<KV[K]>;
@@ -6,7 +7,6 @@ declare type TypedQueryParam<T> = QueryParam<T>;
 export declare type TypedQueryParamLookup<LabelTypeMap> = {
     [K in keyof LabelTypeMap]: TypedQueryParam<LabelTypeMap[K]>;
 };
-declare type ValueOf<T> = T[keyof T];
 export declare type IncompleteMap<LabelTypeMap> = {
     [Label in keyof LabelTypeMap]?: LabelTypeMap[Label];
 };

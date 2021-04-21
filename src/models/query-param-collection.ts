@@ -1,3 +1,4 @@
+import { ValueOf } from '../util';
 import { QueryParam, SerializedQueryParam } from './query-param';
 
 // export type QueryParamMap<T> = Map<T, QueryParam<T, any>>;
@@ -8,8 +9,6 @@ type TypedQueryParam<T> = QueryParam<T>;
 export type TypedQueryParamLookup<LabelTypeMap> = {
   [K in keyof LabelTypeMap]: TypedQueryParam<LabelTypeMap[K]>
 }
-
-type ValueOf<T> = T[keyof T];
 
 export type IncompleteMap<LabelTypeMap> = {
   [Label in keyof LabelTypeMap]?: LabelTypeMap[Label];
