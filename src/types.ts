@@ -1,6 +1,6 @@
 export enum SortValue {
-  Asc,
-  Desc
+  Asc = 'asc',
+  Desc = 'desc'
 }
 
 export interface GroupNamedAPIResourceResponse {
