@@ -48,6 +48,7 @@ export enum FilterQueryParam {
   Type = 'type',
   Ability = 'ability',
   Move = 'move',
+  IsDefault = 'isDefault',
   Generation = 'generation',
   HeightMin = 'heightMin',
   HeightMax = 'heightMax',
@@ -56,14 +57,12 @@ export enum FilterQueryParam {
 export interface FilterQueryLabelTypeLookup {
   [FilterQueryParam.Type]: string[],
   [FilterQueryParam.Generation]: number[],
-  [FilterQueryParam.Generation]: number[],
   [FilterQueryParam.HeightMin]: number,
   [FilterQueryParam.HeightMax]: number,
 }
 
 const filterQueryParamsMap = {
   [FilterQueryParam.Type]: new QueryParam<string[]>('type', queryParamParser.toModelStringList, queryParamParser.serializeStringList),
-  [FilterQueryParam.Generation]: new QueryParam<number[]>('generation', queryParamParser.toModelNumberList, queryParamParser.serializeNumberList),
   [FilterQueryParam.Generation]: new QueryParam<number[]>('generation', queryParamParser.toModelNumberList, queryParamParser.serializeNumberList),
   [FilterQueryParam.HeightMin]: new QueryParam<number>('height-min', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
   [FilterQueryParam.HeightMax]: new QueryParam<number>('height-max', queryParamParser.toModelNumber, queryParamParser.serializeNumber),
@@ -75,8 +74,8 @@ export type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | Filter
 
 export type PokemonQueryParamsKeyValueMap = SortQueryParam & IntervalQueryLabelTypeLookup & FilterQueryLabelTypeLookup;
 
-export type ActivePokemonQueryParams = IncompleteMap<PokemonQueryParamKeys>;
+export type ActivePokemonLabels = IncompleteMap<PokemonQueryParamKeys>;
 
 export type LabelTypeLookup = IntervalQueryLabelTypeLookup & SortQueryLabelTypeLookup & FilterQueryLabelTypeLookup;
 
-export type ActivePokemonControls = IncompleteMap<LabelTypeLookup>;
+export type ActivePokemonLabelTypeLookup = IncompleteMap<LabelTypeLookup>;

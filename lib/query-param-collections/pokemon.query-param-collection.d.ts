@@ -23,6 +23,7 @@ export declare enum FilterQueryParam {
     Type = "type",
     Ability = "ability",
     Move = "move",
+    IsDefault = "isDefault",
     Generation = "generation",
     HeightMin = "heightMin",
     HeightMax = "heightMax"
@@ -30,13 +31,12 @@ export declare enum FilterQueryParam {
 export interface FilterQueryLabelTypeLookup {
     [FilterQueryParam.Type]: string[];
     [FilterQueryParam.Generation]: number[];
-    [FilterQueryParam.Generation]: number[];
     [FilterQueryParam.HeightMin]: number;
     [FilterQueryParam.HeightMax]: number;
 }
 export declare const filterQueryParamCollection: QueryParamCollection<FilterQueryLabelTypeLookup>;
 export declare type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | FilterQueryParam;
 export declare type PokemonQueryParamsKeyValueMap = SortQueryParam & IntervalQueryLabelTypeLookup & FilterQueryLabelTypeLookup;
-export declare type ActivePokemonQueryParams = IncompleteMap<PokemonQueryParamKeys>;
+export declare type ActivePokemonLabels = IncompleteMap<PokemonQueryParamKeys>;
 export declare type LabelTypeLookup = IntervalQueryLabelTypeLookup & SortQueryLabelTypeLookup & FilterQueryLabelTypeLookup;
-export declare type ActivePokemonControls = IncompleteMap<LabelTypeLookup>;
+export declare type ActivePokemonLabelTypeLookup = IncompleteMap<LabelTypeLookup>;
