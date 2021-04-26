@@ -277,70 +277,21 @@ export interface PokemonListResponse {
   limit?: number;
 }
 
-export enum PokemonQueryPrefix {
-  Interval = 'i',
-  Filter = 'f',
-  Sort = 's',
+export type NumberRange = [number, number];
+
+export interface PokemonFilterControls {
+  types: string[];
+  abilities: string[];
+  moves: string[];
+  generations: number[];
+  games: string[];
+  height: NumberRange;
+  weight: NumberRange;
+  hp: NumberRange;
+  attack: NumberRange;
+  defense: NumberRange;
+  specialAttack: NumberRange;
+  specialDefense: NumberRange;
+  speed: NumberRange;
+  baseExperience: NumberRange;  
 }
-
-export const PokemonListQueryPrefixLookup = {
-  i: 'interval',
-  f: 'filter',
-  s: 'sort',
-};
-
-export enum PokemonQuerySuffix {
-  Range = 'r',
-  List = 'l',
-  Boolean = 'b',
-}
-
-export const PokemonListQuerySuffixLookup = {
-  r: 'Range',
-  l: 'List',
-};
-
-export interface DecodedPokemonListUrl {
-  interval?: { [key in keyof typeof IntervalQueryKeyLookup]: number };
-  filter?: FilterParam;
-  sort?: keyof typeof SortParam;
-}
-
-export const SortQueryKeyLookup = {
-  nameAsc: 's-name-asc',
-  nameDesc: 's-name-desc',
-  heightAsc: 's-height-asc',
-  heightDesc: 's-height-desc',
-  weightAsc: 's-weight-asc',
-  weightDesc: 's-weight-desc',
-};
-
-export const IntervalQueryKeyLookup = {
-  interval: 'i-interval',
-  offset: 'i-offset',
-};
-
-export const FilterQueryParamLookup = {
-  typeList: 'f-type-list',
-  generationList: 'f-generation-list',
-  heightMin: 'f-height-min',
-  heightMax: 'f-height-max',
-  weightMin: 'f-weight-min',
-  weightMax: 'f-weight-max',
-  hpMin: 'f-hp-min',
-  hpMax: 'f-hp-max',
-  attackMin: 'f-attack-min',
-  attackMax: 'f-attack-max',
-  defenseMin: 'f-defense-min',
-  defenseMax: 'f-defense-max',
-  specialDefenseMin: 'f-special-defense-min',
-  specialDefenseMax: 'f-special-defense-max',
-  specialAttackMin: 'f-special-attack-min',
-  specialAttackMax: 'f-special-attack-max',
-  specialSpeedMin: 'f-special-speed-min',
-  specialSpeedMax: 'f-special-speed-max',
-  abilityList: 'f-ability-list',
-  moveList: 'f-move-list',
-  isDefault: 'f-is-default',
-  presentInGameList: 'f-presentInGame-list',
-};

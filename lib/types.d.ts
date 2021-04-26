@@ -233,65 +233,20 @@ export interface PokemonListResponse {
     offset?: number;
     limit?: number;
 }
-export declare enum PokemonQueryPrefix {
-    Interval = "i",
-    Filter = "f",
-    Sort = "s"
+export declare type NumberRange = [number, number];
+export interface PokemonFilterControls {
+    types: string[];
+    abilities: string[];
+    moves: string[];
+    generations: number[];
+    games: NameAndCount;
+    height: NumberRange;
+    weight: NumberRange;
+    hp: NumberRange;
+    attack: NumberRange;
+    defense: NumberRange;
+    specialAttack: NumberRange;
+    specialDefense: NumberRange;
+    speed: NumberRange;
+    baseExperience: NumberRange;
 }
-export declare const PokemonListQueryPrefixLookup: {
-    i: string;
-    f: string;
-    s: string;
-};
-export declare enum PokemonQuerySuffix {
-    Range = "r",
-    List = "l",
-    Boolean = "b"
-}
-export declare const PokemonListQuerySuffixLookup: {
-    r: string;
-    l: string;
-};
-export interface DecodedPokemonListUrl {
-    interval?: {
-        [key in keyof typeof IntervalQueryKeyLookup]: number;
-    };
-    filter?: FilterParam;
-    sort?: keyof typeof SortParam;
-}
-export declare const SortQueryKeyLookup: {
-    nameAsc: string;
-    nameDesc: string;
-    heightAsc: string;
-    heightDesc: string;
-    weightAsc: string;
-    weightDesc: string;
-};
-export declare const IntervalQueryKeyLookup: {
-    interval: string;
-    offset: string;
-};
-export declare const FilterQueryParamLookup: {
-    typeList: string;
-    generationList: string;
-    heightMin: string;
-    heightMax: string;
-    weightMin: string;
-    weightMax: string;
-    hpMin: string;
-    hpMax: string;
-    attackMin: string;
-    attackMax: string;
-    defenseMin: string;
-    defenseMax: string;
-    specialDefenseMin: string;
-    specialDefenseMax: string;
-    specialAttackMin: string;
-    specialAttackMax: string;
-    specialSpeedMin: string;
-    specialSpeedMax: string;
-    abilityList: string;
-    moveList: string;
-    isDefault: string;
-    presentInGameList: string;
-};
