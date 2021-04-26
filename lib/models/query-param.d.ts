@@ -15,5 +15,6 @@ export declare class QueryParam<V> {
     setSerializedValue(v: string): void;
     setValue(v: V): void;
     getSerializedQuery: () => SerializedQueryParam;
+    clearValue(): void;
 }
 export {};

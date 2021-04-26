@@ -6,16 +6,25 @@ const mockQueryParam1 = new QueryParam<string>(
   'serialized-label-1',
   queryParamParser.toModelString,
   queryParamParser.serializeString,
+  {
+    value: 'TEST1'
+  }
 );
 const mockQueryParam2 = new QueryParam<string>(
   'serialized-label-2',
   queryParamParser.toModelString,
   queryParamParser.serializeString,
+  {
+    value: 'TEST2'
+  }
 );
 const mockQueryParam3Number = new QueryParam<number>(
   'serialized-label2',
   queryParamParser.toModelNumber,
   queryParamParser.serializeNumber,
+  {
+    value: 7
+  }
 );
 
 enum MockLabel {
@@ -53,10 +62,27 @@ describe('QueryParamCollection Class', () => {
 
       mockQueryParamCollection.updateQueryParamsFromSerialized(mockSerializedQuery);
 
-      const result = mockQueryParamCollection.getLabelValueObject().labelOne;
+      const labelOneResult = mockQueryParamCollection.getLabelValueObject().labelOne;
 
-      expect(result).toBe('value1');
+      expect(labelOneResult).toBe('value1');
+
+      const labelTwoResult = mockQueryParamCollection.getLabelValueObject().labelTwo;
+
+      expect(labelTwoResult).toBeUndefined();
+
     });
+
+    test('no active values should exist if updated with empty object', () => {
+      const expectedUpdatedValue = {};
+
+      mockQueryParamCollection.updateQueryParamsFromSerialized({});
+
+      const result = mockQueryParamCollection.getActiveQueryParams();
+
+      expect(result).toEqual(expectedUpdatedValue);
+
+    });
+
   });
 
   describe('getQueryParamByLabel', () => {

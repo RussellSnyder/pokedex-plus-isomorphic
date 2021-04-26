@@ -29,19 +29,19 @@ export class QueryParamCollection<LabelTypeMap> {
   }
 
   updateQueryParamsFromSerialized = (serializedQueryParam?: SerializedQueryParam): void => {
-    if (!serializedQueryParam) {
-      return;
+    this.clearAllQueryParams();
+
+    if (serializedQueryParam) {
+      Object.entries(serializedQueryParam).forEach(([key, value]) => {
+        const queryParam = this.getQueryParamFromSerializedKey(key);
+        const label = this.getLabelFromSerializedKey(key);
+  
+        if (queryParam && label) {
+          queryParam.setSerializedValue(value);
+          this.queryParams[label] = queryParam;
+        }
+      });
     }
-
-    Object.entries(serializedQueryParam).forEach(([key, value]) => {
-      const queryParam = this.getQueryParamFromSerializedKey(key);
-      const label = this.getLabelFromSerializedKey(key);
-
-      if (queryParam && label) {
-        queryParam.setSerializedValue(value);
-        this.queryParams[label] = queryParam;
-      }
-    });
 
     this.updateActiveQueryParams();
   };
@@ -148,5 +148,9 @@ export class QueryParamCollection<LabelTypeMap> {
 
   private updateActiveQueryParams(): void {
     this.activeParams = this.getActiveQueryParams();
+  }
+
+  private clearAllQueryParams(): void {
+    Object.values(this.queryParams).forEach((qp) => (qp as TypedQueryParam<any>).clearValue());
   }
 }

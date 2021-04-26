@@ -58,4 +58,9 @@ export class QueryParam<V> {
       [this.serializedKey]: this.serializedValue,
     };
   };
+
+  clearValue(): void {
+    this.value = undefined;
+    this.serializedValue = '';
+  }
 }

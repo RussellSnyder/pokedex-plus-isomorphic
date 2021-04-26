@@ -30,5 +30,6 @@ export declare class QueryParamCollection<LabelTypeMap> {
     getActiveQueryParams: () => IncompleteMap<LabelTypeMap>;
     getLabelValueObject: () => LabelTypeMap;
     private updateActiveQueryParams;
+    private clearAllQueryParams;
 }
 export {};
