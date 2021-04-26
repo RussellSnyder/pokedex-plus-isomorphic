@@ -239,7 +239,7 @@ export interface PokemonFilterControls {
     abilities: string[];
     moves: string[];
     generations: number[];
-    games: NameAndCount;
+    games: string[];
     height: NumberRange;
     weight: NumberRange;
     hp: NumberRange;
