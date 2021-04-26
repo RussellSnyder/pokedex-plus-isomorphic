@@ -15,7 +15,7 @@ export interface SortQueryLabelTypeLookup {
   [SortQueryParam.Weight]: SortValue,
 }
 
-const sortQueryParams = {
+export const sortQueryParams = {
   [SortQueryParam.Name]: new QueryParam<SortQueryLabelTypeLookup[SortQueryParam.Name]>('name',
     queryParamParser.toModelSortValue, queryParamParser.serializeSortValue),
   [SortQueryParam.Height]: new QueryParam<SortQueryLabelTypeLookup[SortQueryParam.Height]>('height',
@@ -23,8 +23,6 @@ const sortQueryParams = {
   [SortQueryParam.Weight]: new QueryParam<SortQueryLabelTypeLookup[SortQueryParam.Weight]>('weight',
     queryParamParser.toModelSortValue, queryParamParser.serializeSortValue),
 };
-
-export const sortQueryParamCollection = new QueryParamCollection<SortQueryLabelTypeLookup>(sortQueryParams);
 
 export enum IntervalQueryParam {
   Offset = 'offset',
@@ -44,8 +42,6 @@ export const intervalQueryParams = {
     value: 10
   }),
 };
-
-export const intervalQueryParamCollection = new QueryParamCollection<IntervalQueryLabelTypeLookup>(intervalQueryParams);
 
 export enum FilterQueryParam {
   Type = 'type',
@@ -95,7 +91,7 @@ export interface FilterQueryLabelTypeLookup {
   [FilterQueryParam.WeightMax]: number,
 }
 
-const filterQueryParamsMap = {
+export const filterQueryParamsMap = {
   [FilterQueryParam.Type]: new QueryParam<FilterQueryLabelTypeLookup[FilterQueryParam.Type]>(
     FilterQueryParam.Type, queryParamParser.toModelStringList, queryParamParser.serializeStringList),
   [FilterQueryParam.Ability]: new QueryParam<FilterQueryLabelTypeLookup[FilterQueryParam.Ability]>(
@@ -143,8 +139,6 @@ const filterQueryParamsMap = {
   [FilterQueryParam.HeightMax]: new QueryParam<FilterQueryLabelTypeLookup[FilterQueryParam.HeightMax]>(
     FilterQueryParam.HeightMax, queryParamParser.toModelNumber, queryParamParser.serializeNumber),
 }
-
-export const filterQueryParamCollection = new QueryParamCollection<FilterQueryLabelTypeLookup>(filterQueryParamsMap);
 
 export type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | FilterQueryParam;
 

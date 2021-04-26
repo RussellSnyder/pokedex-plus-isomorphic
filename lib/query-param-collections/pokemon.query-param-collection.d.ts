@@ -1,5 +1,5 @@
 import { QueryParam } from '../models/query-param';
-import { IncompleteMap, QueryParamCollection } from '../models/query-param-collection';
+import { IncompleteMap } from '../models/query-param-collection';
 import { SortValue } from '../types';
 export declare enum SortQueryParam {
     Name = "name",
@@ -11,7 +11,11 @@ export interface SortQueryLabelTypeLookup {
     [SortQueryParam.Height]: SortValue;
     [SortQueryParam.Weight]: SortValue;
 }
-export declare const sortQueryParamCollection: QueryParamCollection<SortQueryLabelTypeLookup>;
+export declare const sortQueryParams: {
+    name: QueryParam<SortValue>;
+    height: QueryParam<SortValue>;
+    weight: QueryParam<SortValue>;
+};
 export declare enum IntervalQueryParam {
     Offset = "offset",
     Limit = "limit"
@@ -24,7 +28,6 @@ export declare const intervalQueryParams: {
     offset: QueryParam<number>;
     limit: QueryParam<number>;
 };
-export declare const intervalQueryParamCollection: QueryParamCollection<IntervalQueryLabelTypeLookup>;
 export declare enum FilterQueryParam {
     Type = "type",
     Ability = "ability",
@@ -71,7 +74,29 @@ export interface FilterQueryLabelTypeLookup {
     [FilterQueryParam.WeightMin]: number;
     [FilterQueryParam.WeightMax]: number;
 }
-export declare const filterQueryParamCollection: QueryParamCollection<FilterQueryLabelTypeLookup>;
+export declare const filterQueryParamsMap: {
+    type: QueryParam<string[]>;
+    ability: QueryParam<string[]>;
+    move: QueryParam<string[]>;
+    generation: QueryParam<number[]>;
+    isdefault: QueryParam<boolean>;
+    hpMin: QueryParam<number>;
+    hpMax: QueryParam<number>;
+    speedmin: QueryParam<number>;
+    speedmax: QueryParam<number>;
+    attackmin: QueryParam<number>;
+    attackmax: QueryParam<number>;
+    defensemin: QueryParam<number>;
+    defensemax: QueryParam<number>;
+    specialattackmin: QueryParam<number>;
+    specialattackmax: QueryParam<number>;
+    specialdefensemin: QueryParam<number>;
+    specialdefensemax: QueryParam<number>;
+    weightmin: QueryParam<number>;
+    weightmax: QueryParam<number>;
+    heightmin: QueryParam<number>;
+    heightmax: QueryParam<number>;
+};
 export declare type PokemonQueryParamKeys = SortQueryParam | IntervalQueryParam | FilterQueryParam;
 export declare type PokemonQueryParamsKeyValueMap = SortQueryParam & IntervalQueryLabelTypeLookup & FilterQueryLabelTypeLookup;
 export declare type ActivePokemonLabels = IncompleteMap<PokemonQueryParamKeys>;
